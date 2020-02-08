@@ -1,44 +1,45 @@
 package guía_4_E2;
 
 public class Products {
-	static String name;
-	static int price, code;
+	private String name;
+	private int price;
+	private int code;
 
 	Products() {}
 	
 	Products(String name, int price, int code) {
-		Products.name = name;
-		Products.price = price;
-		Products.code = code;
+		this.name = name;
+		this.price = price;
+		this.code = code;
 	}
 
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
 
-	public static void setName(String name) {
-		Products.name = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public static int getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public static void setPrice(int price) {
-		Products.price = price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
-	public static int getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public static void setCode(int code) {
-		Products.code = code;
+	public void setCode(int code) {
+		this.code = code;
 	}
 	
 	public String toString() {
-		String format = "***\t***\t***\t***";
-		String productDetail = format + "\n" + name + " \t " + price + " \t " + code + "\n" + format;
+		String format = "***********************************";
+		String productDetail = name + "\t\t" + price + "\t\t" + code + "\n" + format;
 		return productDetail;
 	}
 }
