@@ -6,13 +6,13 @@ public class Persona {
 	Persona() {
 
 	}
-
-	Persona(String rut, String name, String lastName, String adress) {
-		Persona.rut = rut;
-		Persona.lastName = lastName;
-		Persona.name = name;
-		Persona.adress = adress;
-	}
+//
+//	Persona(String rut, String name, String lastName, String adress) {
+//		Persona.rut = rut;
+//		Persona.lastName = lastName;
+//		Persona.name = name;
+//		Persona.adress = adress;
+//	}
 
 	public static String getRut() {
 		return rut;
