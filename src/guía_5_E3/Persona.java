@@ -32,11 +32,11 @@ public class Persona {
 
 	public String toString() {
 		String cond = calcularIMC();
-		String ed = "(Menor de edad)";
+		String ed = " (Menor de edad)";
 		if (esMayorDeEdad() == true) {
-			ed = "(Mayor de edad)";
+			ed = " (Mayor de edad)";
 		}
-		String detallesPersona = "Nombre: " + nombre + "\nEdad: " + edad + + "\nRut: " + rut + "\nSexo: " + sexo
+		String detallesPersona = "Nombre: " + nombre + "\nEdad: " + edad + ed + "\nRut: " + rut + "\nSexo: " + sexo
 				+ "\nPeso: " + peso + "\nAltura: " + altura + "\nIMC: " + imc + " (" + cond + ")";
 		return detallesPersona;
 	}
@@ -52,7 +52,7 @@ public class Persona {
 	public String calcularIMC() {
 		int condition = 0;
 		String conditionS = "Peso ideal";
-		imc = peso * Math.pow(altura, 2);
+		imc = peso / Math.pow(altura, 2);
 		if (imc < 20) {
 			condition = -1;
 			conditionS = "Bajo peso";
