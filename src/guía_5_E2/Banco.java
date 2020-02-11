@@ -16,7 +16,7 @@ public class Banco {
 		boolean respBoolean2 = true;
 		String resp;
 		do {
-			if (respBoolean == false)
+			if (respBoolean == false && respBoolean2 == false)
 				System.out.println("Ha ingresado una respuesta incorrecta, reintente:");
 			System.out.println("¿Desea ingresar un monto inicial? (S/N)");
 			resp = scr.nextLine();
@@ -30,6 +30,8 @@ public class Banco {
 			cuentas.get(aux).setdCantidad(monto);
 			scr.nextLine();
 		}
+		respBoolean = true;
+		respBoolean2 = true;
 		do {
 			do {
 				if (respBoolean == false)
