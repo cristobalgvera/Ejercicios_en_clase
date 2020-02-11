@@ -48,9 +48,7 @@ public class Banco {
 			} else {
 				cuentas.get(aux).Ingreso(scr.nextDouble());
 			}
-			System.out.println("\n\nDETALLE TRANSACCIÓN\n");
-			System.out.println("Titular: " + cuentas.get(aux).getsTitular() + "\nMonto en cuenta: "
-					+ cuentas.get(aux).getdCantidad());
+			cuentas.get(aux).toString();
 			scr.nextLine();
 			System.out.println("\n¿Desea realizar otra operación? (S/N)");
 			resp = scr.nextLine();
