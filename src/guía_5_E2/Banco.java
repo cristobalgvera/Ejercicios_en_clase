@@ -52,6 +52,7 @@ public class Banco {
 			resp = scr.nextLine();
 			respBoolean = validador(resp, "n", "N");
 		} while (respBoolean == false);
+		System.out.println("\nSESIÓN FINALIZADA");
 
 	}
 
