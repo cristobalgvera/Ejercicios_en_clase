@@ -2,13 +2,14 @@ package guía_5_E1;
 
 public class Libro {
 	private String libro, autor;
-	private int ejemplares, ejemplaresPrestados;
+	private int ejemplares, ejemplaresPrestados, ejemplaresDisponibles;
 
 	Libro() {
 		this.libro = "";
 		this.autor = "";
 		this.ejemplares = 0;
 		this.ejemplaresPrestados = 0;
+		this.ejemplaresDisponibles = 0;
 	}
 
 	Libro(String libro, String autor, int ejemplares, int ejemplaresPrestados) {
@@ -16,14 +17,23 @@ public class Libro {
 		this.autor = autor;
 		this.ejemplares = ejemplares;
 		this.ejemplaresPrestados = ejemplaresPrestados;
+		ejemplaresDisponibles(ejemplares, ejemplaresPrestados);
 	}
 
-	void Préstamo() {
-		ejemplaresPrestados++;
+	boolean Validador(int a, int b) {
+		if (a > b) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
-	void Devolución() {
-		ejemplaresPrestados--;
+	void Préstamo(int aux) {
+		ejemplaresPrestados += aux;
+	}
+
+	void Devolución(int aux) {
+		ejemplaresPrestados -= aux;
 	}
 
 	public String getLibro() {
@@ -58,9 +68,24 @@ public class Libro {
 		this.ejemplaresPrestados = ejemplaresPrestados;
 	}
 
+	public int getEjemplaresDisponibles() {
+		return ejemplaresDisponibles;
+	}
+
+	public void ejemplaresDisponibles(int ejemplares, int ejemplaresPrestados) {
+		this.ejemplaresDisponibles = ejemplares - ejemplaresPrestados;
+	}
+	
+	public void setEjemplaresDisponibles(int ejemplaresDisponibles) {
+		this.ejemplaresDisponibles = ejemplaresDisponibles;
+	}
+
 	public String toString() {
-		String productDetail = getLibro() + "\t" + getAutor() + "\t" + getEjemplares() + "\t"
-				+ getEjemplaresPrestados();
-		return productDetail;
+		System.out.println("\n\nSISTEMA DE PRÉSTAMOS\n");
+		System.out.println("Libro a solicitar: " + getLibro());
+		System.out.println("Autor: " + getAutor());
+		System.out.println("Total ejemplares: " + getEjemplares());
+		System.out.println("Ejemplares disponibles: " + getEjemplaresDisponibles() + "\n");
+		return null;
 	}
 }

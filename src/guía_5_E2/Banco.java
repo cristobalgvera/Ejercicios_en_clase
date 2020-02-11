@@ -15,6 +15,7 @@ public class Banco {
 		boolean respBoolean = true;
 		boolean respBoolean2 = true;
 		String resp;
+		double monto;
 		do {
 			if (respBoolean == false && respBoolean2 == false)
 				System.out.println("Ha ingresado una respuesta incorrecta, reintente:");
@@ -23,7 +24,7 @@ public class Banco {
 			respBoolean = validador(resp, "S", "s");
 			respBoolean2 = validador(resp, "N", "n");
 		} while (respBoolean == false && respBoolean2 == false);
-		double monto = 0;
+		monto = 0;
 		if (resp.compareTo("S") == 0 || resp.compareTo("s") == 0) {
 			System.out.print("Monto: ");
 			monto = scr.nextDouble();
@@ -33,6 +34,7 @@ public class Banco {
 		respBoolean = true;
 		respBoolean2 = true;
 		do {
+			respBoolean = true;
 			do {
 				if (respBoolean == false)
 					System.out.println("Ha ingresado una respuesta incorrecta, reintente:");
