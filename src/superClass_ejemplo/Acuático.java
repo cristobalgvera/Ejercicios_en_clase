@@ -14,8 +14,8 @@ public class Acuático extends Animal {
 	}
 	
 	public String toString() {
-		String animalDetail = getName() + "\t\t" + getWeight() + "\t\t\t" + getYears() + "\t\t\t" + getZone()
-				+ "\t\t\t" + getSex() + "\t\t\t" + getFins();
+		String animalDetail = getName() + "\t" + getWeight() + "\t\t" + getYears() + "\t\t" + getZone()
+				+ "\t\t" + getSex() + "\t\t" + getFins();
 		return animalDetail;
 	}
 	

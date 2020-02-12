@@ -29,7 +29,7 @@ public class Banco {
 			System.out.print("Monto: ");
 			monto = scr.nextDouble();
 			cuentas.get(aux).setdCantidad(monto);
-			scr.nextLine();
+//			scr.nextLine();
 		}
 		respBoolean = true;
 		respBoolean2 = true;

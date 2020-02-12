@@ -31,10 +31,11 @@ public class Cuenta {
 	}
 
 	void Retiro(double dRetiro) {
-		if (Validador(dRetiro, dCantidad) == false)
+		if (Validador(dRetiro, dCantidad) == false) {
 			System.out.println("\n************************");
 			System.out.println("CANTIDAD EXCEDE EL MONTO\nRetiro total: " + dCantidad);
 			System.out.println("************************");
+		}
 		this.dCantidad = dCantidad - dRetiro;
 		if (dCantidad < 0) {
 			dCantidad = 0;
