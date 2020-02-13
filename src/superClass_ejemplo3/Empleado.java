@@ -7,6 +7,7 @@ public class Empleado {
 	protected double salario;
 
 	public Empleado(String nombre, String rut, int edad, boolean casado, double salario) {
+		super();
 		this.nombre = nombre;
 		this.rut = rut;
 		this.edad = edad;
@@ -15,7 +16,7 @@ public class Empleado {
 	}
 
 	public Empleado() {
-
+		super();
 	}
 
 	protected String clasificaciónEdad() {
