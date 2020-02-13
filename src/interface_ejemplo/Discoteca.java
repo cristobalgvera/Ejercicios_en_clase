@@ -3,7 +3,7 @@ package interface_ejemplo;
 import java.util.*;
 
 public class Discoteca {
-	static ArrayList objetos = new ArrayList();
+	static ArrayList<Baile> objetos = new ArrayList<Baile>();
 	static Scanner scr = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Discoteca {
 	public static void hacerCantar(Canto a) {
 		a.Cantar();
 	}
-	
+
 	public static void hacerBailar(Baile a) {
 		a.Bailar();
 	}

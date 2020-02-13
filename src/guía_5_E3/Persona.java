@@ -50,14 +50,11 @@ public class Persona {
 	}
 
 	public String calcularIMC() {
-		int condition = 0;
 		String conditionS = "Peso ideal";
 		imc = peso / Math.pow(altura, 2);
 		if (imc < 20) {
-			condition = -1;
 			conditionS = "Bajo peso";
 		} else if (imc >= 25) {
-			condition = 1;
 			conditionS = "Sobrepeso";
 		}
 		return conditionS;
