@@ -14,7 +14,7 @@ public class Celular extends Teléfono {
 
 	public String buscarNúmero(String nombre) {
 		StringBuilder sb = new StringBuilder();
-		int aux = 0;
+		int aux = -1;
 		for (int i = 0; i < contactos.size(); i++) {
 			if (nombre.equalsIgnoreCase(contactos.get(i).getNombre())) {
 				aux = i;
