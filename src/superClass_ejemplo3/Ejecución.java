@@ -163,4 +163,10 @@ public class Ejecución {
 			}
 		}
 	}
+
+	static void saludoFinal() {
+		System.out.println("***************************");
+		System.out.println("**** SESIÓN FINALIZADA ****");
+		System.out.print("***************************");
+	}
 }
