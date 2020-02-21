@@ -8,7 +8,7 @@ public abstract class Animal implements Reproducible, Alimentable {
 	protected int tipoAlimentación;
 	protected double probAlimentación, probReproducción;
 	protected boolean alimentación, reproducción;
-	static int carnívoros, herbívoros, omnívoros;
+	static int carnívoros, herbívoros, omnívoros, población;
 
 	public Animal() {
 	}
@@ -75,22 +75,25 @@ public abstract class Animal implements Reproducible, Alimentable {
 	}
 
 	static String cantidadAnimales() {
+		int carnívorosAnterior = carnívoros, herbívorosAnterior = herbívoros, omnívorosAnterior = omnívoros, poblaciónAnterior = población;
 		carnívoros = 0;
 		herbívoros = 0;
 		omnívoros = 0;
 		for (int i = 0; i < animales.size(); i++) {
 			if (animales.get(i).getTipoAlimentación() == 1) {
 				herbívoros++;
-			} else if(animales.get(i).getTipoAlimentación() == -1) {
+			} else if (animales.get(i).getTipoAlimentación() == -1) {
 				carnívoros++;
 			} else {
 				omnívoros++;
 			}
 		}
+		población = herbívoros + carnívoros + omnívoros;
 		StringBuilder sb = new StringBuilder();
-		sb.append("Carnívoros: " + carnívoros);
-		sb.append("\nHerbívoros: " + herbívoros);
-		sb.append("\nOmnívoros: " + omnívoros);
+		sb.append("POBLACIÓN:    \t" + animales.size() + " \t(" + (población - poblaciónAnterior) + ")");
+		sb.append("\n\nCarnívoros: \t" + carnívoros + " \t(" + (carnívoros - carnívorosAnterior) + ")");
+		sb.append("\nHerbívoros:   \t" + herbívoros + " \t(" + (herbívoros - herbívorosAnterior) + ")");
+		sb.append("\nOmnívoros:    \t" + omnívoros + " \t(" + (omnívoros - omnívorosAnterior) + ")");
 		return sb.toString();
 	}
 }

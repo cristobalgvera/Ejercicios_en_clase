@@ -20,8 +20,8 @@ public class Carnívoro extends Animal {
 	public void crearOtro() {
 		animales.add(new Carnívoro(-1));
 		animales.get(animales.size()-1).setProbAlimentación(Math.random()*60);
-		animales.get(animales.size()-1).setProbReproducción(Math.random()*50);
-		((Carnívoro) animales.get(animales.size()-1)).setBonusAlimento(Math.random()*50 - 20);
+		animales.get(animales.size()-1).setProbReproducción(Math.random()*80);
+		((Carnívoro) animales.get(animales.size()-1)).setBonusAlimento(Math.random()*20 - 10);
 	}
 
 	public double getBonusAlimento() {

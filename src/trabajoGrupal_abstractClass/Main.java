@@ -13,7 +13,7 @@ public class Main {
 		do {
 			nuevoDía();
 			System.out.println(Animal.cantidadAnimales());
-			if (Animal.carnívoros + Animal.herbívoros + Animal.omnívoros != 0) {
+			if (Animal.población != 0) {
 				System.out.println(
 						"\n**************************************\nEnter vacío -> Nuevo día\nEnter con caracteres -> Terminar ciclo\n**************************************");
 				avance = scr.nextLine();
@@ -27,8 +27,8 @@ public class Main {
 
 	static void crearAnimales() {
 		int tipoAlimentación;
-		for (int i = 0; i < (int) (Math.random() * 100) + 1; i++) {
-			tipoAlimentación = (int) (Math.random() * 30) - 45; //LOS CARNÍVOROS CREAN OMNÍVOROS, CORREGIR
+		for (int i = 0; i < (int) (Math.random() * 100) + 50; i++) {
+			tipoAlimentación = (int) (Math.random() * 3) - 1; //LOS CARNÍVOROS CREAN OMNÍVOROS, CORREGIR
 			if (tipoAlimentación < 0) {
 				Animal.animales.add(new Carnívoro());
 				Animal.animales.get(i).crearOtro();
@@ -39,6 +39,7 @@ public class Main {
 				Animal.animales.add(new Omnívoro());
 				Animal.animales.get(i).crearOtro();
 			}
+			Animal.animales.remove(i);
 		}
 	}
 

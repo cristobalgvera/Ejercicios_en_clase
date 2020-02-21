@@ -18,9 +18,9 @@ public class Herbívoro extends Animal {
 	
 	public void crearOtro() {
 		animales.add(new Herbívoro(1));
-		animales.get(animales.size()-1).setProbAlimentación(Math.random()*70);
+		animales.get(animales.size()-1).setProbAlimentación(Math.random()*80);
 		animales.get(animales.size()-1).setProbReproducción(Math.random()*60);
-		((Herbívoro) animales.get(animales.size()-1)).setMovimiento(Math.random()*20 - 10);
+		((Herbívoro) animales.get(animales.size()-1)).setMovimiento(Math.random()*40 - 20);
 	}
 
 	public double getMovimiento() {
@@ -28,7 +28,7 @@ public class Herbívoro extends Animal {
 	}
 
 	public void setMovimiento(double movimiento) {
-		this.probAlimentación += movimiento;
+		this.probReproducción += movimiento;
 	}
 	
 }
