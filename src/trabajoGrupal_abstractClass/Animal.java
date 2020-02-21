@@ -27,11 +27,11 @@ public abstract class Animal implements Reproducible, Alimentable {
 	}
 
 	public void Reproducir() {
-		setReproducción(Math.random() * 99 + 1 < getProbReproducción());
+		setReproducción(Math.random() * 100 + 1 < getProbReproducción());
 	}
 
 	public void Alimentar() {
-		setAlimentación(Math.random() * 99 + 1 < getProbAlimentación());
+		setAlimentación(Math.random() * 100 + 1 < getProbAlimentación());
 	}
 
 	public int getTipoAlimentación() {

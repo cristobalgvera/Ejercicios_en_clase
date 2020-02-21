@@ -27,8 +27,9 @@ public class Main {
 
 	static void crearAnimales() {
 		int tipoAlimentación;
-		for (int i = 0; i < (int) (Math.random() * 100) + 50; i++) {
-			tipoAlimentación = (int) (Math.random() * 3) - 1; //LOS CARNÍVOROS CREAN OMNÍVOROS, CORREGIR
+		int cantidadAnimales = (int) (Math.random() * 100) + 50;
+		for (int i = 0; i < cantidadAnimales; i++) {
+			tipoAlimentación = (int) (Math.random() * 3) - 1;
 			if (tipoAlimentación < 0) {
 				Animal.animales.add(new Carnívoro());
 				Animal.animales.get(i).crearOtro();
