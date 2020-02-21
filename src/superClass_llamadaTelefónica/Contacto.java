@@ -24,7 +24,7 @@ public class Contacto extends Teléfono {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getNombre() + "\t\t\t");
