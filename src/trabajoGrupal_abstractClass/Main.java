@@ -27,7 +27,7 @@ public class Main {
 
 	static void crearAnimales() {
 		int tipoAlimentación;
-		int cantidadAnimales = (int) (Math.random() * 100) + 50;
+		int cantidadAnimales = (int) (Math.random() * 100000) + 50;
 		for (int i = 0; i < cantidadAnimales; i++) {
 			tipoAlimentación = (int) (Math.random() * 3) - 1;
 			if (tipoAlimentación < 0) {
