@@ -13,12 +13,27 @@ public class Main {
 		int opción = menúOpciones();
 		switch (opción) {
 		case 1:
-			Extinción();
+			System.out.print("Días para la supervivencia: ");
+			Extinción(Integer.parseInt(scr.nextLine()));
+			break;
+		case 2:
+			seleccionarExtinción();
+			break;
+		case 3:
+			System.out.print("Digite el día a conocer: ");
+			conocerDíaEspecífico(Integer.parseInt(scr.nextLine()));
+			System.out.print("Enter para conocer la extinción");
+			scr.nextLine();
+			System.out.print("Días para la supervivencia: ");
+			Extinción(Integer.parseInt(scr.nextLine()));
 			break;
 		case 4:
 			interacciónAnimales();
 			break;
 		}
+		System.out.println("\n\n***************************");
+		System.out.println("**   SESIÓN FINALIZADA   **");
+		System.out.print("***************************");
 	}
 
 	static void crearAnimales(double cantidad) {
@@ -41,15 +56,70 @@ public class Main {
 		}
 	}
 
-	static void Extinción() {
-		int supervivencia = 300;
-		System.out.println(Animal.cantidadAnimales() + "\n");
+	static void seleccionarExtinción() {
+		int opción = 1;
+		do {
+			if (opción > 3 || opción < 1)
+				System.out.println("Valor ingresado no es válido, reintente\n");
+			System.out.print("ESPECIES POSIBLES\n\n(1) Carnívoros\n(2) Omnívoros\n(3) Herbívoros\n\nSeleccione la especie a evaluar\n-> ");
+			opción = Integer.parseInt(scr.nextLine());
+		} while (opción > 3 || opción < 1);
+		extinciónEspecie(opción);
+	}
+
+	static void conocerDíaEspecífico(int... días) {
+		for (int díaSolicitado : días) {
+			do {
+				nuevoDía();
+				Animal.cantidadAnimales();
+				if (díaSolicitado == día)
+					break;
+			} while (Animal.población != 0);
+			System.out.print("\nDía " + día + ":");
+			if (Animal.población != 0) {
+				System.out.println("\n\n" + Animal.cantidadAnimales() + "\n");
+			} else {
+				System.out.println(" La solicitud no puede ser procesada");
+				System.out.println(
+						"\n********************************\nNO EXISTE VIDA EN EL ECOSISTEMA\n********************************");
+			}
+		}
+	}
+
+	static void extinciónEspecie(int especie) {
+		System.out.println("\n" + Animal.cantidadAnimales() + "\n");
+		boolean especieVive = true;
 		do {
 			nuevoDía();
 			Animal.cantidadAnimales();
-		} while (Animal.población != 0 && día < supervivencia);
+			switch (especie) {
+			case 1:
+				especieVive = Animal.carnívoros != 0;
+				break;
+			case 2:
+				especieVive = Animal.omnívoros != 0;
+				break;
+			case 3:
+				especieVive = Animal.herbívoros != 0;
+				break;
+			}
+		} while (Animal.población != 0 && especieVive);
+		if (Animal.población == 0) {
+			System.out.println("¡NADIE SOBREVIVIÓ!\n\n" + Animal.cantidadAnimales());
+		} else {
+			System.out.println("¡ESPECIE EXTINTA!\n\n" + Animal.cantidadAnimales());
+		}
+		System.out.print("\nCantidad de días: " + (día));
+	}
+
+	static void Extinción(int díasSupervivencia) {
+		System.out.println("\n" + Animal.cantidadAnimales() + "\n");
+		do {
+			nuevoDía();
+			Animal.cantidadAnimales();
+		} while (Animal.población != 0 && día < díasSupervivencia);
 		System.out.println("Cantidad de días: " + (día) + "\n");
-		if (día == supervivencia)
+		if (día == díasSupervivencia)
 			System.out.println("¡SUPERVIVENCIA!\n\n" + Animal.cantidadAnimales());
 	}
 
