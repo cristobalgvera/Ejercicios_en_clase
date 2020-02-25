@@ -12,7 +12,7 @@ public class Main {
 													// cada electrodoméstico
 
 	public static void main(String[] args) {
-		llenarArray(10); // El método solicita la cantidad de electrodomésticos a evaluar
+		llenarArray(20); // El método solicita la cantidad de electrodomésticos a evaluar
 		sumarPrecios();
 		mostrarObjetos();
 		mostrarPrecios();

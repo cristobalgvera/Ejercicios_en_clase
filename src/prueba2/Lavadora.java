@@ -20,15 +20,15 @@ public class Lavadora extends Electrodoméstico {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder(); // Creamos un objeto para un orden mayor
-		sb.append("LAVADORA\n");
-		sb.append("\nPrecio base:        \t" + getPrecioBase() + " €");
-		sb.append("\nColor:              \t" + getColor());
-		sb.append("\nConsumo energético: \t" + getConsumoEnergético());
-		sb.append("\nPeso:               \t" + getPeso() + " kg");
-		sb.append("\nCarga:              \t" + getCarga() + " kg");
-		sb.append("\nPrecio final:       \t" + precioFinal() + " €");
-		return sb.toString();
+		StringBuilder builder = new StringBuilder(); // Creamos un objeto para un orden mayor
+		builder.append("LAVADORA\n");
+		builder.append("\nPrecio base:        \t" + getPrecioBase() + " €");
+		builder.append("\nColor:              \t" + getColor());
+		builder.append("\nConsumo energético: \t" + getConsumoEnergético());
+		builder.append("\nPeso:               \t" + getPeso() + " kg");
+		builder.append("\nCarga:              \t" + getCarga() + " kg");
+		builder.append("\nPrecio final:       \t" + precioFinal() + " €");
+		return builder.toString();
 	}
 
 	public double getCarga() {

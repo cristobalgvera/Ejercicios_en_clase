@@ -51,14 +51,14 @@ public class Electrodoméstico implements CaracterísticasDefecto {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder(); // Creamos un objeto para un orden mayor
-		sb.append("ELECTRODOMÉSTICO\n");
-		sb.append("\nPrecio base:        \t" + getPrecioBase() + " €");
-		sb.append("\nColor:              \t" + getColor());
-		sb.append("\nConsumo energético: \t" + getConsumoEnergético());
-		sb.append("\nPeso:               \t" + getPeso() + " kg");
-		sb.append("\nPrecio final:       \t" + precioFinalElectrodoméstico() + " €");
-		return sb.toString();
+		StringBuilder builder = new StringBuilder(); // Creamos un objeto para un orden mayor
+		builder.append("ELECTRODOMÉSTICO\n");
+		builder.append("\nPrecio base:        \t" + getPrecioBase() + " €");
+		builder.append("\nColor:              \t" + getColor());
+		builder.append("\nConsumo energético: \t" + getConsumoEnergético());
+		builder.append("\nPeso:               \t" + getPeso() + " kg");
+		builder.append("\nPrecio final:       \t" + precioFinalElectrodoméstico() + " €");
+		return builder.toString();
 	}
 
 	double precioFinalElectrodoméstico() { // Este nombre para el método precioFinal() es exclusivo de la clase
