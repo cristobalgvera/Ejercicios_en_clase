@@ -10,20 +10,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		menúPrincipal();
-		menúOpciones();
-		do {
-			nuevoDía();
-			System.out.println(Animal.cantidadAnimales());
-			if (Animal.población != 0) {
-				System.out.println(
-						"\n**************************************\nEnter vacío -> Nuevo día\nEnter con caracteres -> Terminar ciclo\n**************************************");
-				avance = scr.nextLine();
-			} else {
-				System.out.println(
-						"\n********************************\nNO EXISTE VIDA EN EL ECOSISTEMA\n********************************");
-				avance = " ";
-			}
-		} while (avance.equalsIgnoreCase(""));
+		int opción = menúOpciones();
+		switch (opción) {
+		case 1:
+			Extinción();
+			break;
+		case 4:
+			interacciónAnimales();
+			break;
+		}
 	}
 
 	static void crearAnimales(double cantidad) {
@@ -44,6 +39,35 @@ public class Main {
 			}
 			Animal.animales.remove(i);
 		}
+	}
+
+	static void Extinción() {
+		int supervivencia = 300;
+		System.out.println(Animal.cantidadAnimales() + "\n");
+		do {
+			nuevoDía();
+			Animal.cantidadAnimales();
+		} while (Animal.población != 0 && día < supervivencia);
+		System.out.println("Cantidad de días: " + (día) + "\n");
+		if (día == supervivencia)
+			System.out.println("¡SUPERVIVENCIA!\n\n" + Animal.cantidadAnimales());
+	}
+
+	static void interacciónAnimales() {
+		do {
+			nuevoDía();
+			System.out.println("DÍA " + (día + 1) + "\n");
+			System.out.println(Animal.cantidadAnimales());
+			if (Animal.población != 0) {
+				System.out.println(
+						"\n**************************************\nEnter vacío -> Nuevo día\nEnter con caracteres -> Terminar ciclo\n**************************************");
+				avance = scr.nextLine();
+			} else {
+				System.out.println(
+						"\n********************************\nNO EXISTE VIDA EN EL ECOSISTEMA\n********************************");
+				avance = " ";
+			}
+		} while (avance.equalsIgnoreCase(""));
 	}
 
 	static void menúPrincipal() {
@@ -70,6 +94,7 @@ public class Main {
 		builder.append("(1) Conocer día de extinción\n");
 		builder.append("(2) Seleccionar extinción\n");
 		builder.append("(3) Seleccionar día\n");
+		builder.append("(4) Mostrar normalmente\n");
 		builder.append("\nSeleccione una opción para evaluar\n-> ");
 		System.out.print(builder.toString());
 		boolean opciónBoolean = true;
@@ -81,28 +106,27 @@ public class Main {
 			}
 			try {
 				opciónBoolean = true;
-				opción = verificarInt(Double.parseDouble(scr.nextLine()), 1, 2, 3);
+				opción = verificarInt(Integer.parseInt(scr.nextLine()), 1, 2, 3, 4);
 				if (opción < 0)
 					opciónBoolean = false;
 			} catch (Exception e) {
 				opciónBoolean = false;
-				break;
 			}
 		} while (!opciónBoolean);
+		System.out.println();
 		return opción;
 	}
-	
-	static int verificarInt(double a, int b, int c, int d) {
-		boolean verificador = a == b || a == c || a==d;
+
+	static int verificarInt(int a, int b, int c, int d, int e) {
+		boolean verificador = a == b || a == c || a == d || a == e;
 		if (verificador) {
-			return (int) a;
+			return a;
 		} else {
 			return -1;
 		}
 	}
 
 	static void nuevoDía() {
-		System.out.println("DÍA " + (día + 1) + "\n");
 		if (día > 0) {
 			for (int i = 0; i < Animal.animales.size(); i++) {
 				Animal.animales.get(i).Alimentar();
