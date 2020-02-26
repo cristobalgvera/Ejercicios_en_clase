@@ -22,16 +22,18 @@ public class Main {
 		case 3:
 			System.out.print("Digite el día a conocer: ");
 			conocerDíaEspecífico(Integer.parseInt(scr.nextLine()));
-			System.out.print("Enter para conocer la extinción");
-			scr.nextLine();
-			System.out.print("Días para la supervivencia: ");
-			Extinción(Integer.parseInt(scr.nextLine()));
+			if (Animal.población != 0) {
+				System.out.print("Enter para conocer la extinción");
+				scr.nextLine();
+				System.out.print("Días para la supervivencia: ");
+				Extinción(Integer.parseInt(scr.nextLine()));
+			}
 			break;
 		case 4:
 			interacciónAnimales();
 			break;
 		}
-		System.out.println("\n\n***************************");
+		System.out.println("\n***************************");
 		System.out.println("**   SESIÓN FINALIZADA   **");
 		System.out.print("***************************");
 	}
@@ -61,13 +63,15 @@ public class Main {
 		do {
 			if (opción > 3 || opción < 1)
 				System.out.println("Valor ingresado no es válido, reintente\n");
-			System.out.print("ESPECIES POSIBLES\n\n(1) Carnívoros\n(2) Omnívoros\n(3) Herbívoros\n\nSeleccione la especie a evaluar\n-> ");
+			System.out.print(
+					"ESPECIES POSIBLES\n\n(1) Carnívoros\n(2) Omnívoros\n(3) Herbívoros\n\nSeleccione la especie a evaluar\n-> ");
 			opción = Integer.parseInt(scr.nextLine());
 		} while (opción > 3 || opción < 1);
 		extinciónEspecie(opción);
 	}
 
 	static void conocerDíaEspecífico(int... días) {
+		System.out.println("\n" + Animal.cantidadAnimales() + "\n");
 		for (int díaSolicitado : días) {
 			do {
 				nuevoDía();
@@ -118,15 +122,15 @@ public class Main {
 			nuevoDía();
 			Animal.cantidadAnimales();
 		} while (Animal.población != 0 && día < díasSupervivencia);
-		System.out.println("Cantidad de días: " + (día) + "\n");
+		System.out.print("Cantidad de días: " + (día));
 		if (día == díasSupervivencia)
-			System.out.println("¡SUPERVIVENCIA!\n\n" + Animal.cantidadAnimales());
+			System.out.println("\n\n¡SUPERVIVENCIA!\n\n" + Animal.cantidadAnimales());
 	}
 
 	static void interacciónAnimales() {
 		do {
 			nuevoDía();
-			System.out.println("DÍA " + (día + 1) + "\n");
+			System.out.println("DÍA " + (día) + "\n");
 			System.out.println(Animal.cantidadAnimales());
 			if (Animal.población != 0) {
 				System.out.println(
@@ -187,13 +191,13 @@ public class Main {
 		return opción;
 	}
 
-	static int verificarInt(int a, int b, int c, int d, int e) {
-		boolean verificador = a == b || a == c || a == d || a == e;
-		if (verificador) {
-			return a;
-		} else {
-			return -1;
+	static int verificarInt(int a, int... opcionesPosibles) {
+		for (int b : opcionesPosibles) {
+			if (a == b) {
+				return a;
+			}
 		}
+		return -1;
 	}
 
 	static void nuevoDía() {
