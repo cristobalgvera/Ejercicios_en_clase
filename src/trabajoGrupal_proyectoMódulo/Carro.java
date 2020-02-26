@@ -7,6 +7,10 @@ public class Carro implements Posicionable {
 	protected Date fechaIngreso;
 	protected char TIPO;
 
+	// Representa a la clase padre de los carros {Kromi, Caguano y Trupalla}. Los
+	// atributos importantes para el programa son: {TAMAÑO, TIPO, posición[][] y
+	// númeroImpactos}
+
 	public Carro(int cantidadOcupantes, int[][] posición, Date fechaIngreso) {
 		this.cantidadOcupantes = cantidadOcupantes;
 		this.posición = posición;
@@ -17,6 +21,9 @@ public class Carro implements Posicionable {
 	public Carro() {
 		this.númeroImpactos = 0;
 	}
+
+	// Métodos heredados de la interfaz que setean la posición del huevo en función
+	// de lo determinado de manera aleatórea por el sistema
 
 	@Override
 	public boolean comprobarPosición(char[][] grilla, int[][] posición, int TAMAÑO) {
@@ -45,6 +52,9 @@ public class Carro implements Posicionable {
 		setPosición(posiciónFinal);
 		return grilla;
 	}
+
+	// Representa el impacto de un proyectil (huevo) con el carro. Al alcanzarse el
+	// tamaño del objeto en cuestión, este es "destruido"
 
 	public void Impactar() {
 		setNúmeroImpactos(getNúmeroImpactos() + 1);
