@@ -105,7 +105,7 @@ public class Carro implements Posicionable {
 		builder.append("\nFecha de ingreso:      \t" + getFechaIngreso());
 		builder.append("\nPosición:              \t");
 		for (int i = 0; i < getTamaño(); i++) {
-			builder.append("( " + getPosición()[i][0] + " , " + getPosición()[i][1] + " ) ");
+			builder.append("( " + (getPosición()[i][0] + 1) + " , " + (getPosición()[i][1] + 1) + " ) ");
 		}
 		return builder.toString();
 	}

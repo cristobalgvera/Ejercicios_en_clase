@@ -5,23 +5,20 @@ public class Huevo implements Posicionable {
 	final private char TIPO = 'H';
 	final private int TAMAÑO = 1;
 
+	// Al contrario de lo que se podría pensar, la clase huevo asigna un puntaje a
+	// cada objeto, por ende, cada huevo representa su utilidad en función de esto
+
 	public Huevo(int[][] posición) {
 		this.posición = posición;
-		this.puntaje = 0;
+		this.puntaje = 0; // Todo huevo comienza con un puntaje cero para mayor facilidad de código
 	}
 
 	public Huevo() {
 		this.puntaje = 0;
 	}
 
-	@Override
-	public char[][] asignarPosición(char[][] grilla, int[][] posición, int TAMAÑO) {
-		int fila = posición[0][0];
-		int columna = posición[0][1];
-		grilla[fila][columna] = getTipo();
-		setPosición(posición);
-		return grilla;
-	}
+	// Métodos heredados de la interfaz que setean la posición del huevo en función
+	// de lo ingresado por el usuario
 
 	@Override
 	public boolean comprobarPosición(char[][] grilla, int[][] posición, int TAMAÑO) {
@@ -33,6 +30,18 @@ public class Huevo implements Posicionable {
 			return false;
 		}
 	}
+
+	@Override
+	public char[][] asignarPosición(char[][] grilla, int[][] posición, int TAMAÑO) {
+		int fila = posición[0][0];
+		int columna = posición[0][1];
+		grilla[fila][columna] = getTipo();
+		setPosición(posición);
+		return grilla;
+	}
+
+	// El puntaje depende de los factores solicitados y este representa un atributo
+	// del objeto. De todas formas, posteriormente es otorgado al global
 
 	public void calcularPuntaje(char carroImpacto, Carro carro) {
 		boolean carroInutilizado = carro.getNúmeroImpactos() == carro.getTamaño();
@@ -78,7 +87,7 @@ public class Huevo implements Posicionable {
 	public int getTamaño() {
 		return TAMAÑO;
 	}
-	
+
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Posición:              \t( " + getPosición()[0][0] + " , " + getPosición()[0][1] + " )");

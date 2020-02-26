@@ -36,7 +36,7 @@ public class Tablero {
 				case 1:
 					do {
 						System.out.print(imprimirTableroPuntaje());
-						huevo = crearHuevo();
+						huevo = lanzarHuevo();
 						if (huevo != null) {
 							impactarCarro(huevo, lanzarProyectil(huevo));
 						} else {
@@ -55,7 +55,8 @@ public class Tablero {
 					scr.nextLine();
 					break;
 				case 3:
-					System.out.println("\n\n═════════════════════════════════════════════════════════════════════════\n");
+					System.out
+							.println("\n\n═════════════════════════════════════════════════════════════════════════\n");
 					System.out.println(gameOver());
 					permanenciaMenú = false;
 					break;
@@ -69,42 +70,9 @@ public class Tablero {
 		} while (permanenciaMenú);
 	}
 
-	static String menúPrincipal() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("                ╔═══════════════════════════════════╗\n");
-		builder.append("                ║    F  I  R  S  T    L  I  N  E    ║\n");
-		builder.append("                ╚═══════════════════════════════════╝\n");
-		builder.append("\n                         (1)   COMENZAR\n");
-		builder.append("\n                         (2)   ESTADÍSTICAS\n");
-		builder.append("\n                         (3)   SALIR\n");
-		builder.append("\n                       -> ");
-		return builder.toString();
-	}
-
-	static String imprimirTableroPuntaje() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("\n\n═════════════════════════════════════════════════════════════════════════\n\n");
-		builder.append(imprimirTablero());
-		builder.append("\n\n                   ╔════════════════════════════════╗\n");
-		if (puntaje < 10) {
-			builder.append("═══════════════════╣       P U N T A J E :   " + puntaje + "      ╠════════════════════");
-		} else if (puntaje < 100) {
-			builder.append("═══════════════════╣       P U N T A J E :   " + puntaje + "     ╠════════════════════");
-		} else {
-			builder.append("═══════════════════╣      P U N T A J E :   " + puntaje + "     ╠════════════════════");
-		}
-		builder.append("\n                   ╚════════════════════════════════╝\n\n");
-		return builder.toString();
-	}
-
-	static String gameOver() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("\n");
-		builder.append("                ═╬═════════════════════════════════╬═\n");
-		builder.append("                 ║    G  A  M  E     O  V  E  R    ║ \n");
-		builder.append("                ═╬═════════════════════════════════╬═\n");
-		return builder.toString();
-	}
+	// La acción "crear un carro" se ejecuta y de inmediato se correlaciona con una
+	// posición correcta para el objeto, en caso de no se encontrada esta, el
+	// programa finaliza sus ciclos y devuelve las posiciones que pudo otorgar
 
 	static boolean crearCarro(int categoría) {
 		switch (categoría) {
@@ -125,6 +93,9 @@ public class Tablero {
 			return false;
 		}
 	}
+
+	// Este método entrega una coordenada correcta para el tipo de objeto que se
+	// solicite. En caso de no encontrarla al 10∧5 intento, el método concluye.
 
 	static boolean Posicionamiento(Carro carro) {
 		int[][] posición;
@@ -151,32 +122,13 @@ public class Tablero {
 		}
 	}
 
-	static void impactarCarro(Huevo huevo, char carroImpacto) {
-		Carro carro;
-		int filaHuevo = huevo.getPosición()[0][0];
-		int columnaHuevo = huevo.getPosición()[0][1];
-		if (carroImpacto != huevo.getTipo()) {
-			for (int i = 0; i < carros.size(); i++) {
-				carro = carros.get(i);
-				for (int j = 0; j < carro.getTamaño(); j++) {
-					int filaCarro = carro.getPosición()[j][0];
-					int columnaCarro = carro.getPosición()[j][1];
-//				System.out.println(filaHuevo + " - " + columnaHuevo + " | " + filaCarro + " - " + columnaCarro + ": "
-//						+ carro.getClass());
-					if (filaHuevo == filaCarro && columnaHuevo == columnaCarro) {
-						carro.Impactar();
-						huevo.calcularPuntaje(carroImpacto, carro);
-						puntaje += huevo.getPuntaje();
-						impactosExitosos++;
-						i = carros.size();
-						break;
-					}
-				}
-			}
-		}
-	}
+	// Este método representa la creación, el lanzamiento y el impacto de un objeto
+	// {Huevo}, divididos en distintos métodos. Esas acciones están representadas
+	// por los métodos {crearProyectil()}, {lanzarProyectil()} e {impactarCarro()},
+	// respectivamente. En conclusión, la acción consecutiva de estos tres métodos
+	// mencionados representa "lanzar un huevo"
 
-	static Huevo crearHuevo() {
+	static Huevo lanzarHuevo() {
 		boolean creación;
 		int[][] posición = new int[1][2];
 		Huevo huevo = null;
@@ -213,6 +165,10 @@ public class Tablero {
 		return proyectiles.get(proyectiles.size() - 1);
 	}
 
+	// A partir de este método (que es parte de la acción "lanzar un huevo"), sólo
+	// es posible ejecutarlos si la creación del huevo es exitosa, esto se traduce
+	// en que la creación comprobó que la posición es correcta
+
 	static char lanzarProyectil(Huevo huevo) {
 		int fila = huevo.getPosición()[0][0] - 1;
 		int columna = huevo.getPosición()[0][1] - 1;
@@ -221,6 +177,34 @@ public class Tablero {
 		grilla = huevo.asignarPosición(grilla, posición, huevo.getTamaño());
 		return carroImpacto;
 	}
+
+	static void impactarCarro(Huevo huevo, char carroImpacto) {
+		Carro carro;
+		int filaHuevo = huevo.getPosición()[0][0];
+		int columnaHuevo = huevo.getPosición()[0][1];
+		if (carroImpacto != huevo.getTipo()) {
+			for (int i = 0; i < carros.size(); i++) {
+				carro = carros.get(i);
+				for (int j = 0; j < carro.getTamaño(); j++) {
+					int filaCarro = carro.getPosición()[j][0];
+					int columnaCarro = carro.getPosición()[j][1];
+//				System.out.println(filaHuevo + " - " + columnaHuevo + " | " + filaCarro + " - " + columnaCarro + ": "
+//						+ carro.getClass());
+					if (filaHuevo == filaCarro && columnaHuevo == columnaCarro) {
+						carro.Impactar();
+						huevo.calcularPuntaje(carroImpacto, carro);
+						puntaje += huevo.getPuntaje();
+						impactosExitosos++;
+						i = carros.size();
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	// Métodos que crean la grilla estructurada de forma visual
+	// Cada método {imprimirX()} representa interfaz visual para el usuario
 
 	public static String imprimirTablero() {
 		StringBuilder builder = new StringBuilder();
@@ -291,6 +275,46 @@ public class Tablero {
 		char valor = grilla[fila][columna];
 		String salida = (valor != 0) ? String.valueOf(valor) : " ";
 		builder.append(" " + salida + " ");
+	}
+
+	static String imprimirTableroPuntaje() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n\n═════════════════════════════════════════════════════════════════════════\n\n");
+		builder.append(imprimirTablero());
+		builder.append("\n\n                   ╔════════════════════════════════╗\n");
+		if (puntaje < 10) {
+			builder.append("═══════════════════╣       P U N T A J E :   " + puntaje + "      ╠════════════════════");
+		} else if (puntaje < 100) {
+			builder.append("═══════════════════╣       P U N T A J E :   " + puntaje + "     ╠════════════════════");
+		} else {
+			builder.append("═══════════════════╣      P U N T A J E :   " + puntaje + "     ╠════════════════════");
+		}
+		builder.append("\n                   ╚════════════════════════════════╝\n\n");
+		return builder.toString();
+	}
+
+	// Interfaz para el usuario que determina información relevante
+	// Sólo son cadenas de texto
+
+	static String menúPrincipal() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("                ╔═══════════════════════════════════╗\n");
+		builder.append("                ║    F  I  R  S  T    L  I  N  E    ║\n");
+		builder.append("                ╚═══════════════════════════════════╝\n");
+		builder.append("\n                         (1)   COMENZAR\n");
+		builder.append("\n                         (2)   ESTADÍSTICAS\n");
+		builder.append("\n                         (3)   SALIR\n");
+		builder.append("\n                       -> ");
+		return builder.toString();
+	}
+
+	static String gameOver() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n");
+		builder.append("                ═╬═════════════════════════════════╬═\n");
+		builder.append("                 ║    G  A  M  E     O  V  E  R    ║ \n");
+		builder.append("                ═╬═════════════════════════════════╬═\n");
+		return builder.toString();
 	}
 
 	public static String datosProyectiles() {
