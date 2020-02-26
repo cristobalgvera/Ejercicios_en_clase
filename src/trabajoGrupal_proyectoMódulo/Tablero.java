@@ -14,21 +14,25 @@ public class Tablero {
 	public static void main(String[] args) {
 		Huevo huevo;
 		int opción = 0;
-		boolean permanenciaMenú = true;
+		boolean permanenciaMenú = true, error = false;
 		for (int i = 0; i < 18; i++) {
 			if (!crearCarro((int) (Math.random() * 3)))
 				break;
 		}
 		do {
-			if (permanenciaMenú) {
+			if (!error) {
 				System.out.print(menúPrincipal());
 			} else {
-				System.out.print("ERROR  -> ");
+				System.out.print("                ERROR  -> ");
 			}
+			error = false;
 			permanenciaMenú = true;
 			try {
 				opción = Integer.parseInt(scr.nextLine());
 				switch (opción) {
+				default:
+					error = true;
+					break;
 				case 1:
 					do {
 						System.out.print(imprimirTableroPuntaje());
@@ -58,8 +62,9 @@ public class Tablero {
 				}
 			} catch (Exception e) {
 				permanenciaMenú = true;
+				error = true;
 			}
-			if (permanenciaMenú)
+			if (permanenciaMenú && !error)
 				System.out.println("\n\n═════════════════════════════════════════════════════════════════════════\n\n");
 		} while (permanenciaMenú);
 	}
