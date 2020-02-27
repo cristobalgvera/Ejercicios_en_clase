@@ -19,11 +19,14 @@ public class Tablero {
 			if (!crearCarro((int) (Math.random() * 3)))
 				break;
 		}
+//		for (int i = 0; i < grilla.length; i++) {
+//			System.out.println(grilla[i]);
+//		}
 		do {
 			if (!error) {
 				System.out.print(menúPrincipal());
 			} else {
-				System.out.print("                ERROR  -> ");
+				System.err.print("                ERROR  -> ");
 			}
 			error = false;
 			permanenciaMenú = true;
@@ -57,7 +60,7 @@ public class Tablero {
 				case 3:
 					System.out
 							.println("\n\n═════════════════════════════════════════════════════════════════════════\n");
-					System.out.println(gameOver());
+					System.err.println(gameOver());
 					permanenciaMenú = false;
 					break;
 				}
@@ -330,14 +333,26 @@ public class Tablero {
 	}
 
 	public static String datosCarros() {
+		int carrosInhabilitados = 0;
+		for (int i = 0; i < carrosPorCategoría.length; i++) {
+			carrosInhabilitados += carrosPorCategoría[i][1];
+		}
 		StringBuilder builder = new StringBuilder();
 		builder.append("╔═════════════════════╗\n");
 		builder.append("║     C A R R O S     ║\n");
 		builder.append("╚═════════════════════╝\n");
-		builder.append("\nCantidad de carros:             \t" + carros.size());
+		builder.append("\nCantidad inicial de carros:     \t" + carros.size());
 		builder.append("\n\n║  Kromis:                      \t" + carrosPorCategoría[0][0]);
 		builder.append("\n║  Caguanos:                    \t" + carrosPorCategoría[1][0]);
 		builder.append("\n║  Trupallas:                   \t" + carrosPorCategoría[2][0]);
+		builder.append("\n\nCantidad actual de carros:      \t" + (carros.size() - carrosInhabilitados) + "\t(-"
+				+ carrosInhabilitados + ")");
+		builder.append("\n\n║  Kromis:                      \t" + (carrosPorCategoría[0][0] - carrosPorCategoría[0][1])
+				+ "\t(-" + carrosPorCategoría[0][1] + ")");
+		builder.append("\n║  Caguanos:                    \t" + (carrosPorCategoría[1][0] - carrosPorCategoría[0][1])
+				+ "\t(-" + carrosPorCategoría[1][1] + ")");
+		builder.append("\n║  Trupallas:                   \t" + (carrosPorCategoría[2][0] - carrosPorCategoría[0][1])
+				+ "\t(-" + carrosPorCategoría[2][1] + ")");
 		return builder.toString();
 	}
 }

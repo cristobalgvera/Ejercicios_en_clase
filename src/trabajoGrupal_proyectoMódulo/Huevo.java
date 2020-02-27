@@ -49,16 +49,21 @@ public class Huevo implements Posicionable {
 			switch (carroImpacto) {
 			case 'K':
 				setPuntaje(getPuntaje() + 3);
-				if (carroInutilizado)
+				if (carroInutilizado) {
 					setPuntaje(getPuntaje() + 10);
+					Tablero.carrosPorCategoría[0][1] += 1;
+				}
 				break;
 			case 'C':
 				setPuntaje(getPuntaje() + 2);
-				if (carroInutilizado)
+				if (carroInutilizado) {
 					setPuntaje(getPuntaje() + 7);
+					Tablero.carrosPorCategoría[1][1] += 1;
+				}
 				break;
 			case 'T':
 				setPuntaje(getPuntaje() + 1);
+				Tablero.carrosPorCategoría[2][1] += 1;
 				break;
 			}
 		}

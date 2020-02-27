@@ -8,7 +8,7 @@ public class Carro implements Posicionable {
 	protected char TIPO;
 
 	// Representa a la clase padre de los carros {Kromi, Caguano y Trupalla}. Los
-	// atributos importantes para el programa son: {TAMAÑO, TIPO, posición[][] y
+	// atributos importantes para el programa son: {TAMAÑO, TIPO, 2posición[][] y
 	// númeroImpactos}
 
 	public Carro(int cantidadOcupantes, int[][] posición, Date fechaIngreso) {
