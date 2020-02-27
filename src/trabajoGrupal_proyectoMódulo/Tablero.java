@@ -26,7 +26,7 @@ public class Tablero {
 			if (!error) {
 				System.out.print(menúPrincipal());
 			} else {
-				System.out.print("                ERROR  -> ");
+				System.err.print("                ERROR  -> ");
 			}
 			error = false;
 			permanenciaMenú = true;
